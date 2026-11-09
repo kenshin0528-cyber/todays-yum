@@ -18,6 +18,7 @@
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 6px 8px #7d526329);
+  image-rendering: auto;
 }
 
 .speech {
@@ -37,6 +38,7 @@
   object-fit: contain;
   margin: 0 auto 2px;
   filter: drop-shadow(0 4px 5px #7d52631f);
+  image-rendering: auto;
 }
 
 @media (max-width: 360px) {

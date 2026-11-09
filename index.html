@@ -14,7 +14,7 @@
   <div class="app-shell">
     <header class="topbar">
       <div class="brand"><span aria-hidden="true">🍽️</span><div><strong>오늘 뭐 먹지?</strong><small>맛있는 모험을 떠나요!</small></div></div>
-      <button class="icon-button" id="soundButton" type="button" aria-pressed="false" aria-label="효과음 켜기">🔇</button>
+      <div class="audio-quick"><button class="icon-button" id="soundButton" type="button" aria-pressed="true" aria-label="효과음 끄기">🔊</button><button class="icon-button" id="musicButton" type="button" aria-pressed="false" aria-label="배경음악 켜기">🎵</button></div>
     </header>
     <main id="main" tabindex="-1">
       <section class="view active" id="homeView" data-view="home" aria-labelledby="homeTitle">
@@ -61,6 +61,7 @@
         <div class="page-heading"><div><p class="eyebrow">나만의 맛있는 공간</p><h1 id="myTitle">✏️ 나의 메뉴</h1></div><button class="primary-button inline" id="addMenuButton" type="button">＋ 메뉴 추가</button></div>
         <section class="panel" aria-labelledby="friendTitle"><h2 id="friendTitle" class="section-title">나의 요리 친구</h2><div class="choice-grid" id="mascotChoices"></div></section>
         <section class="panel" aria-labelledby="themeTitle"><h2 id="themeTitle" class="section-title">좋아하는 테마</h2><div class="theme-choices" id="themeChoices"></div></section>
+        <section class="panel audio-settings" aria-labelledby="audioTitle"><h2 id="audioTitle" class="section-title">🎵 소리 설정</h2><p class="setting-note">버튼을 누른 뒤부터 소리가 시작돼요. 언제든 모두 끌 수 있어요.</p><label class="setting-row"><span><b>효과음</b><small id="sfxVolumeText">40%</small></span><input id="sfxEnabled" type="checkbox" role="switch" checked></label><label class="volume-row" for="sfxVolume"><span>효과음 크기</span><input id="sfxVolume" type="range" min="0" max="100" step="5" value="40"></label><label class="setting-row"><span><b>배경음악</b><small id="bgmVolumeText">20%</small></span><input id="bgmEnabled" type="checkbox" role="switch"></label><label class="volume-row" for="bgmVolume"><span>음악 크기</span><input id="bgmVolume" type="range" min="0" max="100" step="5" value="20"></label><p class="audio-status" id="audioStatus" role="status">작은 딸기 카페의 오후 · 84 BPM</p></section>
         <section aria-labelledby="customTitle"><div class="section-row"><h2 id="customTitle" class="section-title">내가 만든 메뉴</h2><span id="customCount" class="count-badge">0개</span></div><div id="customMenuList" class="custom-list"></div></section>
         <section class="panel data-panel" aria-labelledby="dataTitle"><h2 id="dataTitle" class="section-title">저장 데이터 관리</h2><p>좋아요, 도감, 내 메뉴를 이 기기에만 안전하게 저장해요. 개인정보는 모으지 않아요.</p><button class="danger-button" id="resetDataButton" type="button">모든 저장 데이터 초기화</button></section>
       </section>

@@ -11,7 +11,10 @@
 - 한 단계씩 진행하는 꼬마 요리사 모드와 안전·알레르기 안내
 - 사용자 메뉴 추가·수정·삭제와 localStorage 복구
 - 이전 `yum-favorites` 데이터 자동 마이그레이션
-- 핑크·민트·라벤더 테마와 기본 OFF 효과음
+- 핑크·민트·라벤더 테마와 저장되는 소리 설정
+- 모찌·나비·쿠키별 3종 이상의 합성 효과음과 이벤트 성공음
+- 84 BPM, 약 45.7초 오리지널 Web Audio BGM ‘작은 딸기 카페의 오후’
+- 효과음/BGM 개별 ON·OFF와 음량, 자동재생·백그라운드 정책 대응
 
 ## 실행
 
@@ -34,19 +37,21 @@ node --check src/app.js
 
 ## 데이터와 개인정보
 
-모든 사용자 데이터는 브라우저의 `localStorage`에만 저장됩니다. 로그인, 광고, 분석 SDK, 외부 API, 개인정보 수집은 없습니다. 저장 데이터 스키마 키는 `todays-yum:v2`입니다.
+모든 사용자 데이터는 브라우저의 `localStorage`에만 저장됩니다. 로그인, 광고, 분석 SDK, 외부 API, 개인정보 수집은 없습니다. 저장 데이터 스키마 키는 `todays-yum:v3`이며 V2 설정을 자동 마이그레이션합니다.
 
 ## 구조
 
 - `src/data/menus.js`: 기존 24개 메뉴 데이터
 - `src/recommendation.js`: 후보 필터와 편향 없는 추첨
 - `src/storage.js`: 저장·마이그레이션·검증
+- `src/audio.js`: 싱글턴 Web Audio 엔진, 캐릭터 효과음, 오리지널 BGM 악보
 - `src/collection.js`: 도감·스티커 진행도
 - `src/app.js`: 화면 상태와 상호작용
 - `src/styles.css`: 모바일 우선 UI
 - `assets/food/`: 로컬 SVG 일러스트
 - `tests/`: Node 내장 테스트
 - `GATES.md`: 구현·검증 Gate 기록
+- `AUDIO.md`: 오디오 설계와 테스트 결과
 
 ## 조리 및 영양 안내
 

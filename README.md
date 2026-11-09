@@ -15,6 +15,7 @@
 - 모찌·나비·쿠키별 3종 이상의 합성 효과음과 이벤트 성공음
 - 84 BPM, 약 45.7초 오리지널 Web Audio BGM ‘작은 딸기 카페의 오후’
 - 효과음/BGM 개별 ON·OFF와 음량, 자동재생·백그라운드 정책 대응
+- iPhone·Android 홈 화면용 PNG 아이콘과 설치 이름을 포함한 Web App Manifest
 
 ## 실행
 

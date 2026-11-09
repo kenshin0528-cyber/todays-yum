@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "얌얌 메뉴",
+  "short_name": "얌얌 메뉴",
+  "description": "어린이를 위한 귀여운 메뉴 룰렛, 음식 도감, 꼬마 요리사 웹앱",
+  "lang": "ko-KR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff8f7",
+  "theme_color": "#fff8f7",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

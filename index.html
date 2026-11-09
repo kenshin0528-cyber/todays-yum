@@ -14,6 +14,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="src/characters.css">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -24,7 +25,7 @@
     </header>
     <main id="main" tabindex="-1">
       <section class="view active" id="homeView" data-view="home" aria-labelledby="homeTitle">
-        <div class="mascot-card"><div class="mascot" id="mascotArt" aria-hidden="true">🐰</div><div class="speech"><h1 id="homeTitle">안녕! 나는 <span id="mascotName">모찌</span>야</h1><p id="mascotSpeech">오늘은 어떤 맛있는 걸 먹을까?</p></div></div>
+        <div class="mascot-card"><div class="mascot"><img id="mascotArt" src="assets/characters/mochi.png" width="512" height="512" alt="" aria-hidden="true"></div><div class="speech"><h1 id="homeTitle">안녕! 나는 <span id="mascotName">모찌</span>야</h1><p id="mascotSpeech">오늘은 어떤 맛있는 걸 먹을까?</p></div></div>
         <section class="panel compact" aria-labelledby="categoryTitle">
           <h2 class="section-title" id="categoryTitle">어떤 메뉴가 좋아?</h2>
           <div class="chips" id="categoryFilters" role="group" aria-label="메뉴 종류">

@@ -1,0 +1,52 @@
+.mascot-card {
+  gap: 12px;
+  margin: 4px 0 16px;
+}
+
+.mascot {
+  flex: 0 0 clamp(84px, 24vw, 110px);
+  width: clamp(84px, 24vw, 110px);
+  height: clamp(84px, 24vw, 110px);
+  background: transparent;
+  border-radius: 0;
+  filter: none;
+}
+
+.mascot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 8px #7d526329);
+}
+
+.speech {
+  min-width: 0;
+}
+
+.choice-button {
+  min-height: 116px;
+  padding: 8px 4px;
+  overflow: hidden;
+}
+
+.choice-button img {
+  display: block;
+  width: clamp(64px, 18vw, 84px);
+  height: clamp(64px, 18vw, 84px);
+  object-fit: contain;
+  margin: 0 auto 2px;
+  filter: drop-shadow(0 4px 5px #7d52631f);
+}
+
+@media (max-width: 360px) {
+  .mascot-card {
+    gap: 8px;
+  }
+
+  .mascot {
+    flex-basis: 82px;
+    width: 82px;
+    height: 82px;
+  }
+}

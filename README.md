@@ -53,6 +53,14 @@ node --check src/app.js
 - `GATES.md`: 구현·검증 Gate 기록
 - `AUDIO.md`: 오디오 설계와 테스트 결과
 
+## 배포
+
+- GitHub: https://github.com/kenshin0528-cyber/todays-yum
+- Production: https://todays-yum.vercel.app
+- Vercel 프로젝트: `the-grace/todays-yum`
+
+`feature/v1.1` 브랜치의 Preview를 검증한 뒤 `main` 브랜치에 반영하면 Vercel Production이 자동 배포됩니다.
+
 ## 조리 및 영양 안내
 
 레시피는 간단한 가정식 예시이며 어린이는 보호자와 함께 조리해야 합니다. 칼, 불, 뜨거운 물, 오븐·전자레인지 사용 시 보호자 도움이 필요합니다. 영양 수치는 재료와 조리법에 따라 달라지는 참고용 추정값입니다.

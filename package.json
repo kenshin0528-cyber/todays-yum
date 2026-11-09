@@ -1,0 +1,1 @@
+{"name":"todays-yum","version":"1.1.0","private":true,"type":"module","scripts":{"test":"node --test","generate:art":"node scripts/generate-food-art.mjs","screenshots":"node scripts/capture-screenshots.mjs","serve":"node scripts/serve.mjs"}}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f7">
+  <meta name="description" content="어린이를 위한 귀여운 메뉴 룰렛, 음식 도감, 꼬마 요리사 웹앱">
+  <title>오늘 뭐 먹지?</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span aria-hidden="true">🍽️</span><div><strong>오늘 뭐 먹지?</strong><small>맛있는 모험을 떠나요!</small></div></div>
+      <button class="icon-button" id="soundButton" type="button" aria-pressed="false" aria-label="효과음 켜기">🔇</button>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="view active" id="homeView" data-view="home" aria-labelledby="homeTitle">
+        <div class="mascot-card"><div class="mascot" id="mascotArt" aria-hidden="true">🐰</div><div class="speech"><h1 id="homeTitle">안녕! 나는 <span id="mascotName">모찌</span>야</h1><p id="mascotSpeech">오늘은 어떤 맛있는 걸 먹을까?</p></div></div>
+        <section class="panel compact" aria-labelledby="categoryTitle">
+          <h2 class="section-title" id="categoryTitle">어떤 메뉴가 좋아?</h2>
+          <div class="chips" id="categoryFilters" role="group" aria-label="메뉴 종류">
+            <button class="chip" type="button" data-category="all" aria-pressed="true">🍽️ 전체</button><button class="chip" type="button" data-category="korean" aria-pressed="false">🍚 한식</button><button class="chip" type="button" data-category="western" aria-pressed="false">🍝 양식</button><button class="chip" type="button" data-category="snack" aria-pressed="false">🍓 간식</button>
+          </div>
+          <label class="favorite-only"><input id="favoriteOnly" type="checkbox"><span class="toggle" aria-hidden="true"></span><span>💗 좋아하는 메뉴만 뽑기</span></label>
+        </section>
+        <section class="roulette panel" aria-labelledby="rouletteTitle">
+          <div class="sparkles" aria-hidden="true"><span>✦</span><span>♥</span><span>✦</span></div>
+          <div class="food-art-wrap" id="rouletteVisual"><img id="foodArt" src="assets/food/surprise.svg" width="220" height="160" alt="깜짝 메뉴 상자"></div>
+          <p class="eyebrow" id="resultEyebrow">오늘의 행운 메뉴</p><h2 id="rouletteTitle" class="dish-name">뭘 먹을까?</h2><p class="dish-description" id="dishDescription">버튼을 누르면 맛있는 메뉴가 짠!</p>
+          <div class="result-actions hidden" id="resultActions"><button class="heart-button" id="favoriteButton" type="button" aria-pressed="false">♡ 좋아요</button><button class="secondary-button" id="detailsButton" type="button">📖 자세히 보기</button></div>
+          <button class="primary-button" id="spinButton" type="button">🎡 오늘의 메뉴 뽑기!</button>
+          <div class="empty-state hidden" id="emptyState"><p id="emptyMessage">조건에 맞는 메뉴가 없어요.</p><button class="text-button" id="clearFiltersButton" type="button">전체 메뉴 보기</button></div>
+        </section>
+        <section class="detail-panel panel hidden" id="detailPanel" aria-labelledby="detailTitle">
+          <div class="section-row"><h2 id="detailTitle">메뉴 자세히 보기</h2><button class="icon-button" id="closeDetailsButton" type="button" aria-label="상세 정보 닫기">✕</button></div>
+          <h3>🛒 준비할 재료</h3><div class="tag-list" id="ingredientList"></div><h3>👩‍🍳 만드는 순서</h3><ol class="recipe-list" id="recipeList"></ol>
+          <h3>🥕 영양정보 <small>(1인분 기준 추정값)</small></h3><div class="nutrition-grid" id="nutritionGrid"></div>
+          <div class="nutrition-help"><p><b>단백질</b>은 몸이 자라는 데 필요해요.</p><p><b>탄수화물</b>은 신나게 활동할 힘을 줘요.</p><p><b>지방</b>은 몸에 필요한 에너지를 줘요.</p></div><p class="notice">수치는 재료와 조리법에 따라 달라지는 참고용 추정값이에요.</p>
+          <button class="primary-button" id="startCookingButton" type="button">👩‍🍳 함께 만들어보기</button>
+        </section>
+      </section>
+      <section class="view" id="collectionView" data-view="collection" aria-labelledby="collectionTitle" hidden>
+        <div class="page-heading"><div><p class="eyebrow">나의 맛있는 기록</p><h1 id="collectionTitle">📒 메뉴 도감</h1></div><label class="small-check"><input id="collectionFavorites" type="checkbox"> 좋아요만</label></div>
+        <section class="progress-card"><div class="progress-copy"><strong id="progressText">0 / 24 발견</strong><span id="progressPercent">0%</span></div><div class="progress-track" role="progressbar" aria-label="메뉴 발견 진행도" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div></section>
+        <section aria-labelledby="stickerTitle"><h2 class="section-title" id="stickerTitle">내 스티커</h2><div class="sticker-strip" id="stickerStrip"></div></section>
+        <section aria-labelledby="bookTitle"><h2 class="section-title" id="bookTitle">음식 친구들</h2><div class="collection-grid" id="collectionGrid"></div></section>
+      </section>
+      <section class="view" id="cookingView" data-view="cooking" aria-labelledby="cookingTitle" hidden>
+        <div id="cookingEmpty" class="panel empty-page"><span aria-hidden="true">👩‍🍳</span><h1 id="cookingTitle">꼬마 요리사</h1><p>홈에서 메뉴를 뽑고<br>‘함께 만들어보기’를 눌러줘!</p><button class="secondary-button" type="button" data-go="home">홈으로 가기</button></div>
+        <div id="cookingContent" class="hidden"><div class="page-heading"><div><p class="eyebrow">보호자와 함께해요</p><h1 id="cookingName">꼬마 요리사</h1></div><span class="difficulty" id="cookingDifficulty"></span></div>
+          <aside class="safety-card"><strong>🧑‍🤝‍🧑 어린이는 보호자와 함께 요리해요</strong><p>손을 먼저 씻고, 칼·불·뜨거운 물과 기구는 반드시 보호자가 도와주세요. 알레르기 재료도 확인해요.</p></aside>
+          <details class="panel ingredients-drawer"><summary>🛒 재료와 요리 정보 보기</summary><div id="cookingMeta"></div><div class="tag-list" id="cookingIngredients"></div></details>
+          <section class="step-card" aria-live="polite"><div class="step-progress"><span id="stepCount">1 / 3 단계</span><div class="progress-track"><span id="stepProgressBar"></span></div></div><div class="step-illustration" id="stepIcon" aria-hidden="true">🧼</div><h2 id="stepText">먼저 손을 깨끗이 씻어요.</h2></section>
+          <div class="step-controls"><button class="secondary-button" id="previousStepButton" type="button">← 이전</button><button class="primary-button inline" id="nextStepButton" type="button">다음 →</button></div>
+        </div>
+      </section>
+      <section class="view" id="myView" data-view="my" aria-labelledby="myTitle" hidden>
+        <div class="page-heading"><div><p class="eyebrow">나만의 맛있는 공간</p><h1 id="myTitle">✏️ 나의 메뉴</h1></div><button class="primary-button inline" id="addMenuButton" type="button">＋ 메뉴 추가</button></div>
+        <section class="panel" aria-labelledby="friendTitle"><h2 id="friendTitle" class="section-title">나의 요리 친구</h2><div class="choice-grid" id="mascotChoices"></div></section>
+        <section class="panel" aria-labelledby="themeTitle"><h2 id="themeTitle" class="section-title">좋아하는 테마</h2><div class="theme-choices" id="themeChoices"></div></section>
+        <section aria-labelledby="customTitle"><div class="section-row"><h2 id="customTitle" class="section-title">내가 만든 메뉴</h2><span id="customCount" class="count-badge">0개</span></div><div id="customMenuList" class="custom-list"></div></section>
+        <section class="panel data-panel" aria-labelledby="dataTitle"><h2 id="dataTitle" class="section-title">저장 데이터 관리</h2><p>좋아요, 도감, 내 메뉴를 이 기기에만 안전하게 저장해요. 개인정보는 모으지 않아요.</p><button class="danger-button" id="resetDataButton" type="button">모든 저장 데이터 초기화</button></section>
+      </section>
+    </main>
+    <nav class="bottom-nav" aria-label="주요 메뉴"><button type="button" data-tab="home" aria-current="page"><span aria-hidden="true">🏠</span><span>홈</span></button><button type="button" data-tab="collection"><span aria-hidden="true">📒</span><span>메뉴 도감</span></button><button type="button" data-tab="cooking"><span aria-hidden="true">👩‍🍳</span><span>꼬마 요리사</span></button><button type="button" data-tab="my"><span aria-hidden="true">✏️</span><span>나의 메뉴</span></button></nav>
+  </div>
+  <dialog id="menuDialog" aria-labelledby="menuDialogTitle"><form method="dialog" id="menuForm" novalidate><div class="dialog-heading"><h2 id="menuDialogTitle">나만의 메뉴 만들기</h2><button class="icon-button" value="cancel" formnovalidate aria-label="창 닫기">✕</button></div><input type="hidden" id="menuId"><label>메뉴 이름 *<input id="menuName" maxlength="30" required autocomplete="off" placeholder="예: 우리집 볶음밥"></label><label>종류 *<select id="menuCategory" required><option value="korean">한식</option><option value="western">양식</option><option value="snack">간식</option></select></label><fieldset><legend>대표 그림 *</legend><div class="emoji-picker" id="emojiPicker"></div></fieldset><label>짧은 설명<textarea id="menuDescription" maxlength="100" rows="2" placeholder="어떤 맛인지 알려줘!"></textarea></label><label>재료 <small>(한 줄에 하나)</small><textarea id="menuIngredients" maxlength="500" rows="4"></textarea></label><label>만드는 방법 <small>(한 줄에 한 단계)</small><textarea id="menuSteps" maxlength="1000" rows="5"></textarea></label><p class="form-error" id="menuFormError" role="alert"></p><div class="dialog-actions"><button class="secondary-button" value="cancel" formnovalidate>취소</button><button class="primary-button inline" id="saveMenuButton" value="default">저장하기</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div><div class="sr-only" id="announcer" aria-live="assertive"></div><script type="module" src="src/app.js"></script>
+</body>
+</html>

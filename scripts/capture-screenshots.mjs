@@ -1,0 +1,11 @@
+import{spawn}from'node:child_process';import{once}from'node:events';import{mkdir,mkdtemp,rm,writeFile}from'node:fs/promises';import{tmpdir}from'node:os';import{join,resolve}from'node:path';
+const chrome=process.env.CHROME_PATH||'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',port=9333,profile=await mkdtemp(join(tmpdir(),'todays-yum-cdp-')),out=resolve('artifacts/screenshots'),sizes=[[320,568],[375,812],[390,844],[430,932],[768,1024]];
+await mkdir(out,{recursive:true});
+const child=spawn(chrome,['--headless=new','--disable-gpu','--hide-scrollbars','--no-first-run',`--remote-debugging-port=${port}`,`--user-data-dir=${profile}`,'about:blank'],{stdio:'ignore',windowsHide:true});
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function target(){for(let i=0;i<40;i++){try{const list=await fetch(`http://127.0.0.1:${port}/json/list`).then(r=>r.json()),page=list.find(x=>x.type==='page');if(page)return page}catch{}await sleep(100)}throw new Error('Chrome DevTools target unavailable')}
+const page=await target(),ws=new WebSocket(page.webSocketDebuggerUrl),pending=new Map();let seq=0;
+await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+ws.addEventListener('message',event=>{const msg=JSON.parse(event.data);if(msg.id&&pending.has(msg.id)){const{resolve,reject}=pending.get(msg.id);pending.delete(msg.id);msg.error?reject(new Error(msg.error.message)):resolve(msg.result)}});
+const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+try{await send('Page.enable');for(const[width,height]of sizes){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true,screenWidth:width,screenHeight:height});await send('Page.navigate',{url:'http://127.0.0.1:4173'});await sleep(700);const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false,fromSurface:true});await writeFile(join(out,`home-${width}x${height}.png`),Buffer.from(shot.data,'base64'));console.log(`Captured ${width}x${height}`)}}finally{ws.close();child.kill();await Promise.race([once(child,'exit'),sleep(1200)]);await rm(profile,{recursive:true,force:true}).catch(()=>{})}
